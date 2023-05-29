@@ -44,7 +44,7 @@ saveEl.click(function (event) {
 
 // TODO: Add code that writes the saved data in local storage to the page.
 // this for loop runs through the potentially saved local storage and retrieves said potential data to dynamically write it to the textareas in the html.
-for (let i = 9; i <= 17; i++) {
+for (let i = 09; i <= 17; i++) {
   $(`#hour-${i} .description`).val(localStorage.getItem(`${i}`));
 }
 // ^refers to the id and class vallue                    ^ refers to the key stored in local storage
