@@ -20,13 +20,13 @@ $(timeBlockEl).each(function () {
   console.log(currentHour);
 
   if (schedHour > currentHour) {
-    $(timeBlockEl).addClass("future");
+    $(this).addClass("future");
   } else if (schedHour == currentHour) {
-    $(timeBlockEl).addClass("present");
-    $(timeBlockEl).removeClass("future");
+    $(this).addClass("present");
+    $(this).removeClass("future");
   } else {
-    $(timeBlockEl).addClass("past");
-    $(timeBlockEl).removeClass("present");
+    $(this).addClass("past");
+    $(this).removeClass("present");
   }
 });
 
@@ -48,12 +48,5 @@ for (let i = 9; i <= 17; i++) {
   $(`#hour-${i} .description`).val(localStorage.getItem(`${i}`));
 }
 // ^refers to the id and class vallue                    ^ refers to the key stored in local storage
-
-//
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
 
 displayDate();
