@@ -5,13 +5,30 @@
 //Variables
 var dateDisplayEl = $("#date-display");
 var saveEl = $(".saveBtn");
+var timeBlockEl = $(".time-block");
 
 // TODO: Add code to display the current date in the header of the page.
-
 function displayDate() {
   var currentDate = dayjs().format("MMM D, YYYY");
   dateDisplayEl.text(currentDate);
 }
+// TODO: Add code that saves text data to local storage when the save button is clicked.
+$(timeBlockEl).each(function () {
+  var currentHour = dayjs().format("HH");
+  var schedHour = $(this).attr("id").split("-")[1];
+  console.log(schedHour);
+  console.log(currentHour);
+
+  if (schedHour > currentHour) {
+    $(timeBlockEl).addClass("future");
+  } else if (schedHour == currentHour) {
+    $(timeBlockEl).addClass("present");
+    $(timeBlockEl).removeClass("future");
+  } else {
+    $(timeBlockEl).addClass("past");
+    $(timeBlockEl).removeClass("present");
+  }
+});
 
 saveEl.click(function (event) {
   console.log("clicked");
@@ -23,34 +40,20 @@ saveEl.click(function (event) {
   var description = $(this).siblings(".description").val();
   // setItem() method will save the data to local storage and will require the keyName and the keyValue.
   localStorage.setItem(schedHour, description);
-
-  $("#hour-09 .description").val(localStorage.getItem("09"));
-  $("#hour-10 .description").val(localStorage.getItem("10"));
-  $("#hour-11 .description").val(localStorage.getItem("11"));
-  $("#hour-12 .description").val(localStorage.getItem("12"));
-  $("#hour-13 .description").val(localStorage.getItem("13"));
-  $("#hour-14 .description").val(localStorage.getItem("14"));
-  $("#hour-15 .description").val(localStorage.getItem("15"));
-  $("#hour-16 .description").val(localStorage.getItem("16"));
-  $("#hour-17 .description").val(localStorage.getItem("17"));
 });
 
-// TODO: Add a listener for click events on the save button. This code should
-// use the id in the containing time-block as a key to save the user input in
-// local storage. HINT: What does `this` reference in the click listener
-// function? How can DOM traversal be used to get the "hour-x" id of the
-// time-block containing the button that was clicked? How might the id be
-// useful when saving the description in local storage?
+// TODO: Add code that writes the saved data in local storage to the page.
+// this for loop runs through the potentially saved local storage and retrieves said potential data to dynamically write it to the textareas in the html.
+for (let i = 9; i <= 17; i++) {
+  $(`#hour-${i} .description`).val(localStorage.getItem(`${i}`));
+}
+// ^refers to the id and class vallue                    ^ refers to the key stored in local storage
+
 //
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
 // attribute of each time-block be used to conditionally add or remove the
 // past, present, and future classes? How can Day.js be used to get the
 // current hour in 24-hour time?
-//
-// TODO: Add code to get any user input that was saved in localStorage and set
-// the values of the corresponding textarea elements. HINT: How can the id
-// attribute of each time-block be used to do this?
-//
 
 displayDate();
