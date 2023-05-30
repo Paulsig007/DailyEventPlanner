@@ -19,3 +19,6 @@ All you need to do is enter the task in the corresponding time slot, be it a mee
 ## Credits
 
 I have no collaborators, yet...
+
+
+![Screenshot 2023-05-29 at 8 44 48 PM](https://github.com/Paulsig007/DailyEventPlanner/assets/131915869/ef63a91c-78c4-4cb3-9744-2231f3290149)
